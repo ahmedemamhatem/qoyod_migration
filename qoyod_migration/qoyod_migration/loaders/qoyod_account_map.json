@@ -1,0 +1,1059 @@
+{
+  "120101": {
+    "qoyod_id": 1,
+    "qoyod_code": "120101",
+    "qoyod_name": "الأراضي",
+    "erpnext_account": "120101-Qoyod - الأراضي-Qoyod - ق",
+    "match": "exists"
+  },
+  "120102": {
+    "qoyod_id": 2,
+    "qoyod_code": "120102",
+    "qoyod_name": "المباني",
+    "erpnext_account": "120102-Qoyod - المباني-Qoyod - ق",
+    "match": "exists"
+  },
+  "120103": {
+    "qoyod_id": 3,
+    "qoyod_code": "120103",
+    "qoyod_name": "المعدات",
+    "erpnext_account": "120103-Qoyod - المعدات-Qoyod - ق",
+    "match": "exists"
+  },
+  "12010401": {
+    "qoyod_id": 100,
+    "qoyod_code": "12010401",
+    "qoyod_name": "اثاثات مكتبية",
+    "erpnext_account": "12010401-Qoyod - اثاثات مكتبية-Qoyod - ق",
+    "match": "exists"
+  },
+  "12010402": {
+    "qoyod_id": 107,
+    "qoyod_code": "12010402",
+    "qoyod_name": "طابعات",
+    "erpnext_account": "12010402-Qoyod - طابعات-Qoyod - ق",
+    "match": "exists"
+  },
+  "120105": {
+    "qoyod_id": 108,
+    "qoyod_code": "120105",
+    "qoyod_name": "تجهيزات علي مباني مستأجرة",
+    "erpnext_account": "120105-Qoyod - تجهيزات علي مباني مستأجرة-Qoyod - ق",
+    "match": "exists"
+  },
+  "120106": {
+    "qoyod_id": 111,
+    "qoyod_code": "120106",
+    "qoyod_name": "برامج محاسبية",
+    "erpnext_account": "120106-Qoyod - برامج محاسبية-Qoyod - ق",
+    "match": "exists"
+  },
+  "120107": {
+    "qoyod_id": 113,
+    "qoyod_code": "120107",
+    "qoyod_name": "كاميرات مراقبة",
+    "erpnext_account": "120107-Qoyod - كاميرات مراقبة-Qoyod - ق",
+    "match": "exists"
+  },
+  "12010403": {
+    "qoyod_id": 116,
+    "qoyod_code": "12010403",
+    "qoyod_name": "شاشة إلي سي دي",
+    "erpnext_account": "12010403-Qoyod - شاشة إلي سي دي-Qoyod - ق",
+    "match": "exists"
+  },
+  "12010404": {
+    "qoyod_id": 196,
+    "qoyod_code": "12010404",
+    "qoyod_name": "أجهزة كمبيوتر وطابعات",
+    "erpnext_account": "12010404-Qoyod - أجهزة كمبيوتر وطابعات-Qoyod - ق",
+    "match": "exists"
+  },
+  "110101": {
+    "qoyod_id": 7,
+    "qoyod_code": "110101",
+    "qoyod_name": "النقدية في الخزينة",
+    "erpnext_account": "110101-Qoyod - النقدية في الخزينة-Qoyod - ق",
+    "match": "exists"
+  },
+  "110201": {
+    "qoyod_id": 8,
+    "qoyod_code": "110201",
+    "qoyod_name": "حساب البنك الجاري - بنك الرياضح/ SA7720000002041691009940",
+    "erpnext_account": "110201-Qoyod - حساب البنك الجاري - بنك الرياضح/ SA7720000002041691009940-Qoyod - ق",
+    "match": "exists"
+  },
+  "1103": {
+    "qoyod_id": 9,
+    "qoyod_code": "1103",
+    "qoyod_name": "المدينون",
+    "erpnext_account": "1103-Qoyod - المدينون-Qoyod - ق",
+    "match": "exists"
+  },
+  "1107": {
+    "qoyod_id": 129,
+    "qoyod_code": "1107",
+    "qoyod_name": "تأمينات لدي الغير",
+    "erpnext_account": "1107-Qoyod - تأمينات لدي الغير-Qoyod - ق",
+    "match": "exists"
+  },
+  "1106": {
+    "qoyod_id": 10,
+    "qoyod_code": "1106",
+    "qoyod_name": "المخزون",
+    "erpnext_account": "1106-Qoyod - المخزون-Qoyod - ق",
+    "match": "exists"
+  },
+  "5204": {
+    "qoyod_id": 11,
+    "qoyod_code": "5204",
+    "qoyod_name": "مصاريف الإيجار",
+    "erpnext_account": "5204-Qoyod - مصاريف الإيجار-Qoyod - ق",
+    "match": "exists"
+  },
+  "5202": {
+    "qoyod_id": 62,
+    "qoyod_code": "5202",
+    "qoyod_name": "تأمين طبي",
+    "erpnext_account": "5202-Qoyod - تأمين طبي-Qoyod - ق",
+    "match": "exists"
+  },
+  "5206": {
+    "qoyod_id": 66,
+    "qoyod_code": "5206",
+    "qoyod_name": "تذاكر سفر",
+    "erpnext_account": "5206-Qoyod - تذاكر سفر-Qoyod - ق",
+    "match": "exists"
+  },
+  "5207": {
+    "qoyod_id": 67,
+    "qoyod_code": "5207",
+    "qoyod_name": "التأمينات الاجتماعية",
+    "erpnext_account": "5207-Qoyod - التأمينات الاجتماعية-Qoyod - ق",
+    "match": "exists"
+  },
+  "5209": {
+    "qoyod_id": 69,
+    "qoyod_code": "5209",
+    "qoyod_name": "رسوم واشتراكات",
+    "erpnext_account": "5209-Qoyod - رسوم واشتراكات-Qoyod - ق",
+    "match": "exists"
+  },
+  "5210": {
+    "qoyod_id": 70,
+    "qoyod_code": "5210",
+    "qoyod_name": "مصاريف خدمات المكتب",
+    "erpnext_account": "5210-Qoyod - مصاريف خدمات المكتب-Qoyod - ق",
+    "match": "exists"
+  },
+  "5211": {
+    "qoyod_id": 71,
+    "qoyod_code": "5211",
+    "qoyod_name": "مصاريف مكتبية ومطبوعات",
+    "erpnext_account": "5211-Qoyod - مصاريف مكتبية ومطبوعات-Qoyod - ق",
+    "match": "exists"
+  },
+  "5212": {
+    "qoyod_id": 72,
+    "qoyod_code": "5212",
+    "qoyod_name": "مصاريف ضيافة",
+    "erpnext_account": "5212-Qoyod - مصاريف ضيافة-Qoyod - ق",
+    "match": "exists"
+  },
+  "5213": {
+    "qoyod_id": 73,
+    "qoyod_code": "5213",
+    "qoyod_name": "عمولات بنكية",
+    "erpnext_account": "5213-Qoyod - عمولات بنكية-Qoyod - ق",
+    "match": "exists"
+  },
+  "5214": {
+    "qoyod_id": 74,
+    "qoyod_code": "5214",
+    "qoyod_name": "مصاريف أخرى",
+    "erpnext_account": "5214-Qoyod - مصاريف أخرى-Qoyod - ق",
+    "match": "exists"
+  },
+  "5219": {
+    "qoyod_id": 82,
+    "qoyod_code": "5219",
+    "qoyod_name": "مصروف نقل ومواصلات",
+    "erpnext_account": "5219-Qoyod - مصروف نقل ومواصلات-Qoyod - ق",
+    "match": "exists"
+  },
+  "520801": {
+    "qoyod_id": 144,
+    "qoyod_code": "520801",
+    "qoyod_name": "الزكاة والدخل",
+    "erpnext_account": "520801-Qoyod - الزكاة والدخل-Qoyod - ق",
+    "match": "exists"
+  },
+  "5218": {
+    "qoyod_id": 146,
+    "qoyod_code": "5218",
+    "qoyod_name": "برنامج المحاسبة",
+    "erpnext_account": "5218-Qoyod - برنامج المحاسبة-Qoyod - ق",
+    "match": "exists"
+  },
+  "520802": {
+    "qoyod_id": 171,
+    "qoyod_code": "520802",
+    "qoyod_name": "إشتراك قوي",
+    "erpnext_account": "520802-Qoyod - إشتراك قوي-Qoyod - ق",
+    "match": "exists"
+  },
+  "5201": {
+    "qoyod_id": 13,
+    "qoyod_code": "5201",
+    "qoyod_name": "الرواتب والرسوم الإدارية",
+    "erpnext_account": "5201-Qoyod - الرواتب والرسوم الإدارية-Qoyod - ق",
+    "match": "exists"
+  },
+  "2101": {
+    "qoyod_id": 14,
+    "qoyod_code": "2101",
+    "qoyod_name": "الدائنون",
+    "erpnext_account": "2101-Qoyod - الدائنون-Qoyod - ق",
+    "match": "exists"
+  },
+  "211001": {
+    "qoyod_id": 119,
+    "qoyod_code": "211001",
+    "qoyod_name": "محمد هجيج للديكورات والموبيليا",
+    "erpnext_account": "211001-Qoyod - محمد هجيج للديكورات والموبيليا-Qoyod - ق",
+    "match": "exists"
+  },
+  "2111": {
+    "qoyod_id": 150,
+    "qoyod_code": "2111",
+    "qoyod_name": "ضريبة قيمة مضافة مستحقة الدفع",
+    "erpnext_account": "2111-Qoyod - ضريبة قيمة مضافة مستحقة الدفع-Qoyod - ق",
+    "match": "exists"
+  },
+  "2113": {
+    "qoyod_id": 178,
+    "qoyod_code": "2113",
+    "qoyod_name": "محمد زياد الدخيل",
+    "erpnext_account": "2113-Qoyod - محمد زياد الدخيل-Qoyod - ق",
+    "match": "exists"
+  },
+  "211401": {
+    "qoyod_id": 181,
+    "qoyod_code": "211401",
+    "qoyod_name": "شركة بلاد الفن للصيانة والتشطيب",
+    "erpnext_account": "211401-Qoyod - شركة بلاد الفن للصيانة والتشطيب-Qoyod - ق",
+    "match": "exists"
+  },
+  "211402": {
+    "qoyod_id": 193,
+    "qoyod_code": "211402",
+    "qoyod_name": "شركة ربط",
+    "erpnext_account": "211402-Qoyod - شركة ربط-Qoyod - ق",
+    "match": "exists"
+  },
+  "211403": {
+    "qoyod_id": 194,
+    "qoyod_code": "211403",
+    "qoyod_name": "شركة قنة",
+    "erpnext_account": "211403-Qoyod - شركة قنة-Qoyod - ق",
+    "match": "exists"
+  },
+  "211404": {
+    "qoyod_id": 195,
+    "qoyod_code": "211404",
+    "qoyod_name": "شركة راغد لادارة المرافق",
+    "erpnext_account": "211404-Qoyod - شركة راغد لادارة المرافق-Qoyod - ق",
+    "match": "exists"
+  },
+  "211405": {
+    "qoyod_id": 203,
+    "qoyod_code": "211405",
+    "qoyod_name": "شركة ايكة",
+    "erpnext_account": "211405-Qoyod - شركة ايكة-Qoyod - ق",
+    "match": "exists"
+  },
+  "3101": {
+    "qoyod_id": 15,
+    "qoyod_code": "3101",
+    "qoyod_name": "رأس المال المسجل",
+    "erpnext_account": "3101-Qoyod - رأس المال المسجل-Qoyod - ق",
+    "match": "exists"
+  },
+  "3402": {
+    "qoyod_id": 16,
+    "qoyod_code": "3402",
+    "qoyod_name": "الأرباح المبقاة (أو الخسائر)",
+    "erpnext_account": "3402-Qoyod - الأرباح المبقاة (أو الخسائر)-Qoyod - ق",
+    "match": "exists"
+  },
+  "3401": {
+    "qoyod_id": 49,
+    "qoyod_code": "3401",
+    "qoyod_name": "الأرباح والخسائر العاملة",
+    "erpnext_account": "3401-Qoyod - الأرباح والخسائر العاملة-Qoyod - ق",
+    "match": "exists"
+  },
+  "4101": {
+    "qoyod_id": 17,
+    "qoyod_code": "4101",
+    "qoyod_name": "إيرادات المبيعات/ الخدمات",
+    "erpnext_account": "4101-Qoyod - إيرادات المبيعات/ الخدمات-Qoyod - ق",
+    "match": "exists"
+  },
+  "4201": {
+    "qoyod_id": 18,
+    "qoyod_code": "4201",
+    "qoyod_name": "إيرادات أخرى",
+    "erpnext_account": "4201-Qoyod - إيرادات أخرى-Qoyod - ق",
+    "match": "exists"
+  },
+  "2105": {
+    "qoyod_id": 19,
+    "qoyod_code": "2105",
+    "qoyod_name": "ضريبة القيمة المضافة المستحقة",
+    "erpnext_account": "2105-Qoyod - ضريبة القيمة المضافة المستحقة-Qoyod - ق",
+    "match": "exists"
+  },
+  "1202": {
+    "qoyod_id": 22,
+    "qoyod_code": "1202",
+    "qoyod_name": "الأصول غير الملموسة",
+    "erpnext_account": "1202-Qoyod - الأصول غير الملموسة-Qoyod - ق",
+    "match": "exists"
+  },
+  "2102": {
+    "qoyod_id": 26,
+    "qoyod_code": "2102",
+    "qoyod_name": "مصروفات مستحقة",
+    "erpnext_account": "2102-Qoyod - مصروفات مستحقة-Qoyod - ق",
+    "match": "exists"
+  },
+  "2103": {
+    "qoyod_id": 27,
+    "qoyod_code": "2103",
+    "qoyod_name": "الرواتب المستحقة",
+    "erpnext_account": "2103-Qoyod - الرواتب المستحقة-Qoyod - ق",
+    "match": "exists"
+  },
+  "2104": {
+    "qoyod_id": 28,
+    "qoyod_code": "2104",
+    "qoyod_name": "قروض قصيرة الأجل",
+    "erpnext_account": "2104-Qoyod - قروض قصيرة الأجل-Qoyod - ق",
+    "match": "exists"
+  },
+  "2106": {
+    "qoyod_id": 30,
+    "qoyod_code": "2106",
+    "qoyod_name": "الضرائب المستحقة",
+    "erpnext_account": "2106-Qoyod - الضرائب المستحقة-Qoyod - ق",
+    "match": "exists"
+  },
+  "2107": {
+    "qoyod_id": 31,
+    "qoyod_code": "2107",
+    "qoyod_name": "إيرادات غير مكتسبة",
+    "erpnext_account": "2107-Qoyod - إيرادات غير مكتسبة-Qoyod - ق",
+    "match": "exists"
+  },
+  "2108": {
+    "qoyod_id": 32,
+    "qoyod_code": "2108",
+    "qoyod_name": "مستحقات المؤسسة العامة للتأمينات الاجتماعية",
+    "erpnext_account": "2108-Qoyod - مستحقات المؤسسة العامة للتأمينات الاجتماعية-Qoyod - ق",
+    "match": "exists"
+  },
+  "2112": {
+    "qoyod_id": 151,
+    "qoyod_code": "2112",
+    "qoyod_name": "عبد الرحمن عبد الله المهنا",
+    "erpnext_account": "2112-Qoyod - عبد الرحمن عبد الله المهنا-Qoyod - ق",
+    "match": "exists"
+  },
+  "210901": {
+    "qoyod_id": 34,
+    "qoyod_code": "210901",
+    "qoyod_name": "مجمع استهلاك المباني",
+    "erpnext_account": "210901-Qoyod - مجمع استهلاك المباني-Qoyod - ق",
+    "match": "exists"
+  },
+  "210902": {
+    "qoyod_id": 35,
+    "qoyod_code": "210902",
+    "qoyod_name": "مجمع استهلاك المعدات",
+    "erpnext_account": "210902-Qoyod - مجمع استهلاك المعدات-Qoyod - ق",
+    "match": "exists"
+  },
+  "210903": {
+    "qoyod_id": 36,
+    "qoyod_code": "210903",
+    "qoyod_name": "مجمع استهلاك أجهزة مكتبية وطابعات",
+    "erpnext_account": "210903-Qoyod - مجمع استهلاك أجهزة مكتبية وطابعات-Qoyod - ق",
+    "match": "exists"
+  },
+  "2201": {
+    "qoyod_id": 38,
+    "qoyod_code": "2201",
+    "qoyod_name": "قروض طويلة أجل",
+    "erpnext_account": "2201-Qoyod - قروض طويلة أجل-Qoyod - ق",
+    "match": "exists"
+  },
+  "3201": {
+    "qoyod_id": 44,
+    "qoyod_code": "3201",
+    "qoyod_name": "أرصدة افتتاحية",
+    "erpnext_account": "3201-Qoyod - أرصدة افتتاحية-Qoyod - ق",
+    "match": "exists"
+  },
+  "3301": {
+    "qoyod_id": 45,
+    "qoyod_code": "3301",
+    "qoyod_name": "احتياطي نظامي",
+    "erpnext_account": "3301-Qoyod - احتياطي نظامي-Qoyod - ق",
+    "match": "exists"
+  },
+  "3302": {
+    "qoyod_id": 46,
+    "qoyod_code": "3302",
+    "qoyod_name": "احتياطي ترجمة عملات أجنبية",
+    "erpnext_account": "3302-Qoyod - احتياطي ترجمة عملات أجنبية-Qoyod - ق",
+    "match": "exists"
+  },
+  "110401": {
+    "qoyod_id": 54,
+    "qoyod_code": "110401",
+    "qoyod_name": "تأمين طبي مقدم",
+    "erpnext_account": "110401-Qoyod - تأمين طبي مقدم-Qoyod - ق",
+    "match": "exists"
+  },
+  "110402": {
+    "qoyod_id": 57,
+    "qoyod_code": "110402",
+    "qoyod_name": "إيجار مقدم",
+    "erpnext_account": "110402-Qoyod - إيجار مقدم-Qoyod - ق",
+    "match": "exists"
+  },
+  "5103": {
+    "qoyod_id": 59,
+    "qoyod_code": "5103",
+    "qoyod_name": "عمولات البيع",
+    "erpnext_account": "5103-Qoyod - عمولات البيع-Qoyod - ق",
+    "match": "exists"
+  },
+  "5104": {
+    "qoyod_id": 84,
+    "qoyod_code": "5104",
+    "qoyod_name": "شحن وتخليص جمركي",
+    "erpnext_account": "5104-Qoyod - شحن وتخليص جمركي-Qoyod - ق",
+    "match": "exists"
+  },
+  "5105": {
+    "qoyod_id": 97,
+    "qoyod_code": "5105",
+    "qoyod_name": "حفل يوم التأسيس",
+    "erpnext_account": "5105-Qoyod - حفل يوم التأسيس-Qoyod - ق",
+    "match": "exists"
+  },
+  "5106": {
+    "qoyod_id": 98,
+    "qoyod_code": "5106",
+    "qoyod_name": "تعديلات علي المكتب النسائي",
+    "erpnext_account": "5106-Qoyod - تعديلات علي المكتب النسائي-Qoyod - ق",
+    "match": "exists"
+  },
+  "5114": {
+    "qoyod_id": 168,
+    "qoyod_code": "5114",
+    "qoyod_name": "أعمال مقاول باطن مشروع تنفيذ وتجهيز الأثاث المكتبي وأعمال المقاولات لمشروع التأمين الصحي الوطني",
+    "erpnext_account": "5114-Qoyod - أعمال مقاول باطن مشروع تنفيذ وتجهيز الأثاث المكتبي وأعمال المقاولات لمشروع التأمين الصحي الوطني-Qoyod - ق",
+    "match": "exists"
+  },
+  "5115": {
+    "qoyod_id": 172,
+    "qoyod_code": "5115",
+    "qoyod_name": "مقاولي الباطن",
+    "erpnext_account": "5115-Qoyod - مقاولي الباطن-Qoyod - ق",
+    "match": "exists"
+  },
+  "5124": {
+    "qoyod_id": 202,
+    "qoyod_code": "5124",
+    "qoyod_name": "إستئجار عمالة",
+    "erpnext_account": "5124-Qoyod - إستئجار عمالة-Qoyod - ق",
+    "match": "exists"
+  },
+  "5125": {
+    "qoyod_id": 204,
+    "qoyod_code": "5125",
+    "qoyod_name": "ايجار عقار دبل تو سنتر",
+    "erpnext_account": "5125-Qoyod - ايجار عقار دبل تو سنتر-Qoyod - ق",
+    "match": "exists"
+  },
+  "1105": {
+    "qoyod_id": 61,
+    "qoyod_code": "1105",
+    "qoyod_name": "مدفوعات مقدمة للموظفين",
+    "erpnext_account": "1105-Qoyod - مدفوعات مقدمة للموظفين-Qoyod - ق",
+    "match": "exists"
+  },
+  "1108": {
+    "qoyod_id": 200,
+    "qoyod_code": "1108",
+    "qoyod_name": "ابتهال أبو بكر محمد باخطيب",
+    "erpnext_account": "1108-Qoyod - ابتهال أبو بكر محمد باخطيب-Qoyod - ق",
+    "match": "exists"
+  },
+  "5203": {
+    "qoyod_id": 63,
+    "qoyod_code": "5203",
+    "qoyod_name": "مصاريف تسويقية ودعائية",
+    "erpnext_account": "5203-Qoyod - مصاريف تسويقية ودعائية-Qoyod - ق",
+    "match": "exists"
+  },
+  "5205": {
+    "qoyod_id": 65,
+    "qoyod_code": "5205",
+    "qoyod_name": "عمولات وحوافز",
+    "erpnext_account": "5205-Qoyod - عمولات وحوافز-Qoyod - ق",
+    "match": "exists"
+  },
+  "5220": {
+    "qoyod_id": 169,
+    "qoyod_code": "5220",
+    "qoyod_name": "مكافآت خاصة",
+    "erpnext_account": "5220-Qoyod - مكافآت خاصة-Qoyod - ق",
+    "match": "exists"
+  },
+  "521501": {
+    "qoyod_id": 76,
+    "qoyod_code": "521501",
+    "qoyod_name": "مصروف إهلاك المباني",
+    "erpnext_account": "521501-Qoyod - مصروف إهلاك المباني-Qoyod - ق",
+    "match": "exists"
+  },
+  "521502": {
+    "qoyod_id": 77,
+    "qoyod_code": "521502",
+    "qoyod_name": "مصروف إهلاك المعدات",
+    "erpnext_account": "521502-Qoyod - مصروف إهلاك المعدات-Qoyod - ق",
+    "match": "exists"
+  },
+  "521503": {
+    "qoyod_id": 78,
+    "qoyod_code": "521503",
+    "qoyod_name": "مصروف إهلاك أجهزة مكتبية وطابعات",
+    "erpnext_account": "521503-Qoyod - مصروف إهلاك أجهزة مكتبية وطابعات-Qoyod - ق",
+    "match": "exists"
+  },
+  "2202": {
+    "qoyod_id": 85,
+    "qoyod_code": "2202",
+    "qoyod_name": "مخصص مكافأة نهاية الخدمة",
+    "erpnext_account": "2202-Qoyod - مخصص مكافأة نهاية الخدمة-Qoyod - ق",
+    "match": "exists"
+  },
+  "310201": {
+    "qoyod_id": 90,
+    "qoyod_code": "310201",
+    "qoyod_name": "محمد عبد الرحمن عبد الله المهنا",
+    "erpnext_account": "310201-Qoyod - محمد عبد الرحمن عبد الله المهنا-Qoyod - ق",
+    "match": "exists"
+  },
+  "310202": {
+    "qoyod_id": 91,
+    "qoyod_code": "310202",
+    "qoyod_name": "أمين أحمد",
+    "erpnext_account": "310202-Qoyod - أمين أحمد-Qoyod - ق",
+    "match": "exists"
+  },
+  "310203": {
+    "qoyod_id": 187,
+    "qoyod_code": "310203",
+    "qoyod_name": "أمين أحمد - الفيلا",
+    "erpnext_account": "310203-Qoyod - أمين أحمد - الفيلا-Qoyod - ق",
+    "match": "exists"
+  },
+  "510101": {
+    "qoyod_id": 92,
+    "qoyod_code": "510101",
+    "qoyod_name": "مصاريف كهرباء",
+    "erpnext_account": "510101-Qoyod - مصاريف كهرباء-Qoyod - ق",
+    "match": "exists"
+  },
+  "51010201": {
+    "qoyod_id": 102,
+    "qoyod_code": "51010201",
+    "qoyod_name": "إيجار الدور الثاني - الجمعة الوطنية لحقوق الإنسان",
+    "erpnext_account": "51010201-Qoyod - إيجار الدور الثاني - الجمعة الوطنية لحقوق الإنسان-Qoyod - ق",
+    "match": "exists"
+  },
+  "51010202": {
+    "qoyod_id": 103,
+    "qoyod_code": "51010202",
+    "qoyod_name": "إيجار الدور الثالث - الجمعية الوطنية لحقوق الإنسان",
+    "erpnext_account": "51010202-Qoyod - إيجار الدور الثالث - الجمعية الوطنية لحقوق الإنسان-Qoyod - ق",
+    "match": "exists"
+  },
+  "510103": {
+    "qoyod_id": 109,
+    "qoyod_code": "510103",
+    "qoyod_name": "خدمة الضيافة",
+    "erpnext_account": "510103-Qoyod - خدمة الضيافة-Qoyod - ق",
+    "match": "exists"
+  },
+  "510104": {
+    "qoyod_id": 110,
+    "qoyod_code": "510104",
+    "qoyod_name": "خدمات مختلفة",
+    "erpnext_account": "510104-Qoyod - خدمات مختلفة-Qoyod - ق",
+    "match": "exists"
+  },
+  "510105": {
+    "qoyod_id": 112,
+    "qoyod_code": "510105",
+    "qoyod_name": "هاتف وانترنت",
+    "erpnext_account": "510105-Qoyod - هاتف وانترنت-Qoyod - ق",
+    "match": "exists"
+  },
+  "510106": {
+    "qoyod_id": 114,
+    "qoyod_code": "510106",
+    "qoyod_name": "إيجار المسرح - الجمعية الوطنية - مشروع فعالية عيد الفطر",
+    "erpnext_account": "510106-Qoyod - إيجار المسرح - الجمعية الوطنية - مشروع فعالية عيد الفطر-Qoyod - ق",
+    "match": "exists"
+  },
+  "510107": {
+    "qoyod_id": 115,
+    "qoyod_code": "510107",
+    "qoyod_name": "سعي مكتب",
+    "erpnext_account": "510107-Qoyod - سعي مكتب-Qoyod - ق",
+    "match": "exists"
+  },
+  "510108": {
+    "qoyod_id": 120,
+    "qoyod_code": "510108",
+    "qoyod_name": "أجهزة كهربائية",
+    "erpnext_account": "510108-Qoyod - أجهزة كهربائية-Qoyod - ق",
+    "match": "exists"
+  },
+  "510109": {
+    "qoyod_id": 121,
+    "qoyod_code": "510109",
+    "qoyod_name": "شاشات إلي سي دي",
+    "erpnext_account": "510109-Qoyod - شاشات إلي سي دي-Qoyod - ق",
+    "match": "exists"
+  },
+  "510110": {
+    "qoyod_id": 122,
+    "qoyod_code": "510110",
+    "qoyod_name": "اثاث",
+    "erpnext_account": "510110-Qoyod - اثاث-Qoyod - ق",
+    "match": "exists"
+  },
+  "510111": {
+    "qoyod_id": 123,
+    "qoyod_code": "510111",
+    "qoyod_name": "كمبيوتر وطابعات",
+    "erpnext_account": "510111-Qoyod - كمبيوتر وطابعات-Qoyod - ق",
+    "match": "exists"
+  },
+  "510112": {
+    "qoyod_id": 124,
+    "qoyod_code": "510112",
+    "qoyod_name": "تجهيزات المباني",
+    "erpnext_account": "510112-Qoyod - تجهيزات المباني-Qoyod - ق",
+    "match": "exists"
+  },
+  "510113": {
+    "qoyod_id": 125,
+    "qoyod_code": "510113",
+    "qoyod_name": "برنامج محاسبي",
+    "erpnext_account": "510113-Qoyod - برنامج محاسبي-Qoyod - ق",
+    "match": "exists"
+  },
+  "510114": {
+    "qoyod_id": 126,
+    "qoyod_code": "510114",
+    "qoyod_name": "كاميرات",
+    "erpnext_account": "510114-Qoyod - كاميرات-Qoyod - ق",
+    "match": "exists"
+  },
+  "510115": {
+    "qoyod_id": 128,
+    "qoyod_code": "510115",
+    "qoyod_name": "قبول إخلاء",
+    "erpnext_account": "510115-Qoyod - قبول إخلاء-Qoyod - ق",
+    "match": "exists"
+  },
+  "51010203": {
+    "qoyod_id": 130,
+    "qoyod_code": "51010203",
+    "qoyod_name": "إيجار القاعة",
+    "erpnext_account": "51010203-Qoyod - إيجار القاعة-Qoyod - ق",
+    "match": "exists"
+  },
+  "5107": {
+    "qoyod_id": 131,
+    "qoyod_code": "5107",
+    "qoyod_name": "تصاميم",
+    "erpnext_account": "5107-Qoyod - تصاميم-Qoyod - ق",
+    "match": "exists"
+  },
+  "510116": {
+    "qoyod_id": 132,
+    "qoyod_code": "510116",
+    "qoyod_name": "أعمال صيانة وتركيب مكيفات",
+    "erpnext_account": "510116-Qoyod - أعمال صيانة وتركيب مكيفات-Qoyod - ق",
+    "match": "exists"
+  },
+  "510117": {
+    "qoyod_id": 133,
+    "qoyod_code": "510117",
+    "qoyod_name": "مصاريف متنوعة",
+    "erpnext_account": "510117-Qoyod - مصاريف متنوعة-Qoyod - ق",
+    "match": "exists"
+  },
+  "510118": {
+    "qoyod_id": 135,
+    "qoyod_code": "510118",
+    "qoyod_name": "اعمال تجهيزات متنوعة",
+    "erpnext_account": "510118-Qoyod - اعمال تجهيزات متنوعة-Qoyod - ق",
+    "match": "exists"
+  },
+  "51010204": {
+    "qoyod_id": 136,
+    "qoyod_code": "51010204",
+    "qoyod_name": "إيجار المسرح - الجمعية الوطنية",
+    "erpnext_account": "51010204-Qoyod - إيجار المسرح - الجمعية الوطنية-Qoyod - ق",
+    "match": "exists"
+  },
+  "510119": {
+    "qoyod_id": 137,
+    "qoyod_code": "510119",
+    "qoyod_name": "مصاريف خدمات المكتب متنوعة",
+    "erpnext_account": "510119-Qoyod - مصاريف خدمات المكتب متنوعة-Qoyod - ق",
+    "match": "exists"
+  },
+  "510120": {
+    "qoyod_id": 138,
+    "qoyod_code": "510120",
+    "qoyod_name": "مرتبات وأجور",
+    "erpnext_account": "510120-Qoyod - مرتبات وأجور-Qoyod - ق",
+    "match": "exists"
+  },
+  "510121": {
+    "qoyod_id": 139,
+    "qoyod_code": "510121",
+    "qoyod_name": "تصميمات",
+    "erpnext_account": "510121-Qoyod - تصميمات-Qoyod - ق",
+    "match": "exists"
+  },
+  "510122": {
+    "qoyod_id": 141,
+    "qoyod_code": "510122",
+    "qoyod_name": "مصاريف تسويق ودعاية",
+    "erpnext_account": "510122-Qoyod - مصاريف تسويق ودعاية-Qoyod - ق",
+    "match": "exists"
+  },
+  "510123": {
+    "qoyod_id": 142,
+    "qoyod_code": "510123",
+    "qoyod_name": "مصاريف قرطاسية ومطبوعات",
+    "erpnext_account": "510123-Qoyod - مصاريف قرطاسية ومطبوعات-Qoyod - ق",
+    "match": "exists"
+  },
+  "510124": {
+    "qoyod_id": 143,
+    "qoyod_code": "510124",
+    "qoyod_name": "أشجار وشتلات زراعية زينة",
+    "erpnext_account": "510124-Qoyod - أشجار وشتلات زراعية زينة-Qoyod - ق",
+    "match": "exists"
+  },
+  "510125": {
+    "qoyod_id": 145,
+    "qoyod_code": "510125",
+    "qoyod_name": "أتعاب حسابات",
+    "erpnext_account": "510125-Qoyod - أتعاب حسابات-Qoyod - ق",
+    "match": "exists"
+  },
+  "51010205": {
+    "qoyod_id": 148,
+    "qoyod_code": "51010205",
+    "qoyod_name": "إيجار الدور الثاني مبني الرياض جاليري",
+    "erpnext_account": "51010205-Qoyod - إيجار الدور الثاني مبني الرياض جاليري-Qoyod - ق",
+    "match": "exists"
+  },
+  "51010206": {
+    "qoyod_id": 149,
+    "qoyod_code": "51010206",
+    "qoyod_name": "إيجار الدور الثالث مبني الرياض جاليري",
+    "erpnext_account": "51010206-Qoyod - إيجار الدور الثالث مبني الرياض جاليري-Qoyod - ق",
+    "match": "exists"
+  },
+  "510126": {
+    "qoyod_id": 152,
+    "qoyod_code": "510126",
+    "qoyod_name": "إكسسوارت كمبيوتر",
+    "erpnext_account": "510126-Qoyod - إكسسوارت كمبيوتر-Qoyod - ق",
+    "match": "exists"
+  },
+  "510127": {
+    "qoyod_id": 153,
+    "qoyod_code": "510127",
+    "qoyod_name": "شبكة إتصالات وإنترنت",
+    "erpnext_account": "510127-Qoyod - شبكة إتصالات وإنترنت-Qoyod - ق",
+    "match": "exists"
+  },
+  "510128": {
+    "qoyod_id": 154,
+    "qoyod_code": "510128",
+    "qoyod_name": "مصاريف العلامة التجارية",
+    "erpnext_account": "510128-Qoyod - مصاريف العلامة التجارية-Qoyod - ق",
+    "match": "exists"
+  },
+  "510129": {
+    "qoyod_id": 157,
+    "qoyod_code": "510129",
+    "qoyod_name": "مواد ومهمات",
+    "erpnext_account": "510129-Qoyod - مواد ومهمات-Qoyod - ق",
+    "match": "exists"
+  },
+  "5102": {
+    "qoyod_id": 158,
+    "qoyod_code": "5102",
+    "qoyod_name": "بلاط",
+    "erpnext_account": "5102-Qoyod - بلاط-Qoyod - ق",
+    "match": "exists"
+  },
+  "5108": {
+    "qoyod_id": 159,
+    "qoyod_code": "5108",
+    "qoyod_name": "مصنعيات تركيب بلاط وسيراميك ورخام",
+    "erpnext_account": "5108-Qoyod - مصنعيات تركيب بلاط وسيراميك ورخام-Qoyod - ق",
+    "match": "exists"
+  },
+  "510130": {
+    "qoyod_id": 160,
+    "qoyod_code": "510130",
+    "qoyod_name": "أجور نقل",
+    "erpnext_account": "510130-Qoyod - أجور نقل-Qoyod - ق",
+    "match": "exists"
+  },
+  "510131": {
+    "qoyod_id": 161,
+    "qoyod_code": "510131",
+    "qoyod_name": "زهور وأشجار زينة",
+    "erpnext_account": "510131-Qoyod - زهور وأشجار زينة-Qoyod - ق",
+    "match": "exists"
+  },
+  "5109": {
+    "qoyod_id": 162,
+    "qoyod_code": "5109",
+    "qoyod_name": "مصنعيات تركيب لكسان",
+    "erpnext_account": "5109-Qoyod - مصنعيات تركيب لكسان-Qoyod - ق",
+    "match": "exists"
+  },
+  "5110": {
+    "qoyod_id": 163,
+    "qoyod_code": "5110",
+    "qoyod_name": "مصنعيات تشطيبات",
+    "erpnext_account": "5110-Qoyod - مصنعيات تشطيبات-Qoyod - ق",
+    "match": "exists"
+  },
+  "5111": {
+    "qoyod_id": 164,
+    "qoyod_code": "5111",
+    "qoyod_name": "ستيكرات",
+    "erpnext_account": "5111-Qoyod - ستيكرات-Qoyod - ق",
+    "match": "exists"
+  },
+  "5112": {
+    "qoyod_id": 165,
+    "qoyod_code": "5112",
+    "qoyod_name": "كتب",
+    "erpnext_account": "5112-Qoyod - كتب-Qoyod - ق",
+    "match": "exists"
+  },
+  "5113": {
+    "qoyod_id": 166,
+    "qoyod_code": "5113",
+    "qoyod_name": "خدمات تسويقية",
+    "erpnext_account": "5113-Qoyod - خدمات تسويقية-Qoyod - ق",
+    "match": "exists"
+  },
+  "510132": {
+    "qoyod_id": 170,
+    "qoyod_code": "510132",
+    "qoyod_name": "مصنعيات",
+    "erpnext_account": "510132-Qoyod - مصنعيات-Qoyod - ق",
+    "match": "exists"
+  },
+  "5116": {
+    "qoyod_id": 173,
+    "qoyod_code": "5116",
+    "qoyod_name": "صيانة أجهزة",
+    "erpnext_account": "5116-Qoyod - صيانة أجهزة-Qoyod - ق",
+    "match": "exists"
+  },
+  "5117": {
+    "qoyod_id": 174,
+    "qoyod_code": "5117",
+    "qoyod_name": "خدمات ضيافة ونظافة",
+    "erpnext_account": "5117-Qoyod - خدمات ضيافة ونظافة-Qoyod - ق",
+    "match": "exists"
+  },
+  "5118": {
+    "qoyod_id": 176,
+    "qoyod_code": "5118",
+    "qoyod_name": "نظام هاتف مقاوم للصوت",
+    "erpnext_account": "5118-Qoyod - نظام هاتف مقاوم للصوت-Qoyod - ق",
+    "match": "exists"
+  },
+  "510133": {
+    "qoyod_id": 177,
+    "qoyod_code": "510133",
+    "qoyod_name": "عدد وأدوات",
+    "erpnext_account": "510133-Qoyod - عدد وأدوات-Qoyod - ق",
+    "match": "exists"
+  },
+  "51010207": {
+    "qoyod_id": 182,
+    "qoyod_code": "51010207",
+    "qoyod_name": "إيجار موقف إضافي",
+    "erpnext_account": "51010207-Qoyod - إيجار موقف إضافي-Qoyod - ق",
+    "match": "exists"
+  },
+  "5119": {
+    "qoyod_id": 183,
+    "qoyod_code": "5119",
+    "qoyod_name": "إصلاح وصيانة عامة",
+    "erpnext_account": "5119-Qoyod - إصلاح وصيانة عامة-Qoyod - ق",
+    "match": "exists"
+  },
+  "5120": {
+    "qoyod_id": 184,
+    "qoyod_code": "5120",
+    "qoyod_name": "أعمال كهرباء وميكانيكا",
+    "erpnext_account": "5120-Qoyod - أعمال كهرباء وميكانيكا-Qoyod - ق",
+    "match": "exists"
+  },
+  "5121": {
+    "qoyod_id": 185,
+    "qoyod_code": "5121",
+    "qoyod_name": "عمولات سعي",
+    "erpnext_account": "5121-Qoyod - عمولات سعي-Qoyod - ق",
+    "match": "exists"
+  },
+  "5122": {
+    "qoyod_id": 186,
+    "qoyod_code": "5122",
+    "qoyod_name": "صيانة وتركيب مشتملات الإنترنت والشبكات",
+    "erpnext_account": "5122-Qoyod - صيانة وتركيب مشتملات الإنترنت والشبكات-Qoyod - ق",
+    "match": "exists"
+  },
+  "51010208": {
+    "qoyod_id": 188,
+    "qoyod_code": "51010208",
+    "qoyod_name": "مشروع دبل توسنتر",
+    "erpnext_account": "51010208-Qoyod - مشروع دبل توسنتر-Qoyod - ق",
+    "match": "exists"
+  },
+  "512301": {
+    "qoyod_id": 191,
+    "qoyod_code": "512301",
+    "qoyod_name": "كابينة هاتف",
+    "erpnext_account": "512301-Qoyod - كابينة هاتف-Qoyod - ق",
+    "match": "exists"
+  },
+  "512302": {
+    "qoyod_id": 192,
+    "qoyod_code": "512302",
+    "qoyod_name": "كوب كريمي HN-503036_U",
+    "erpnext_account": "512302-Qoyod - كوب كريمي HN-503036_U-Qoyod - ق",
+    "match": "exists"
+  },
+  "510134": {
+    "qoyod_id": 197,
+    "qoyod_code": "510134",
+    "qoyod_name": "أعباء تمويلية",
+    "erpnext_account": "510134-Qoyod - أعباء تمويلية-Qoyod - ق",
+    "match": "exists"
+  },
+  "512303": {
+    "qoyod_id": 198,
+    "qoyod_code": "512303",
+    "qoyod_name": "طاولة مكتب",
+    "erpnext_account": "512303-Qoyod - طاولة مكتب-Qoyod - ق",
+    "match": "exists"
+  },
+  "512304": {
+    "qoyod_id": 199,
+    "qoyod_code": "512304",
+    "qoyod_name": "غرف عازلة للصوت",
+    "erpnext_account": "512304-Qoyod - غرف عازلة للصوت-Qoyod - ق",
+    "match": "exists"
+  },
+  "5305": {
+    "qoyod_id": 96,
+    "qoyod_code": "5305",
+    "qoyod_name": "مصاريف هاتف وإنترنت",
+    "erpnext_account": "5305-Qoyod - مصاريف هاتف وإنترنت-Qoyod - ق",
+    "match": "exists"
+  },
+  "5216": {
+    "qoyod_id": 104,
+    "qoyod_code": "5216",
+    "qoyod_name": "مصاريف كهرباء أخري",
+    "erpnext_account": "5216-Qoyod - مصاريف كهرباء أخري-Qoyod - ق",
+    "match": "exists"
+  },
+  "5217": {
+    "qoyod_id": 117,
+    "qoyod_code": "5217",
+    "qoyod_name": "أتعاب محاسبة",
+    "erpnext_account": "5217-Qoyod - أتعاب محاسبة-Qoyod - ق",
+    "match": "exists"
+  },
+  "11010201": {
+    "qoyod_id": 127,
+    "qoyod_code": "11010201",
+    "qoyod_name": "فهد بخيتان بخيت البقيلي",
+    "erpnext_account": "11010201-Qoyod - فهد بخيتان بخيت البقيلي-Qoyod - ق",
+    "match": "exists"
+  },
+  "11010202": {
+    "qoyod_id": 134,
+    "qoyod_code": "11010202",
+    "qoyod_name": "أمين أحمدالجمعي",
+    "erpnext_account": "11010202-Qoyod - أمين أحمدالجمعي-Qoyod - ق",
+    "match": "exists"
+  },
+  "11010203": {
+    "qoyod_id": 201,
+    "qoyod_code": "11010203",
+    "qoyod_name": "مساعد فهد العنزي",
+    "erpnext_account": "11010203-Qoyod - مساعد فهد العنزي-Qoyod - ق",
+    "match": "exists"
+  },
+  "12030101": {
+    "qoyod_id": 156,
+    "qoyod_code": "12030101",
+    "qoyod_name": "شركة نوع المالية",
+    "erpnext_account": "12030101-Qoyod - شركة نوع المالية-Qoyod - ق",
+    "match": "exists"
+  },
+  "12030102": {
+    "qoyod_id": 175,
+    "qoyod_code": "12030102",
+    "qoyod_name": "شركة تمدين",
+    "erpnext_account": "12030102-Qoyod - شركة تمدين-Qoyod - ق",
+    "match": "exists"
+  },
+  "2203": {
+    "qoyod_id": 179,
+    "qoyod_code": "2203",
+    "qoyod_name": "مخصص الزكاة",
+    "erpnext_account": "2203-Qoyod - مخصص الزكاة-Qoyod - ق",
+    "match": "exists"
+  }
+}

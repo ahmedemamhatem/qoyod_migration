@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "creation": "2026-07-15 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "connection_section",
+  "api_base",
+  "api_key",
+  "column_break_conn",
+  "company",
+  "vat_account",
+  "defaults_section",
+  "root_item_group",
+  "default_territory",
+  "account_suffix",
+  "column_break_def",
+  "customer_group_company",
+  "customer_group_individual",
+  "default_supplier_group"
+ ],
+ "fields": [
+  {
+   "fieldname": "connection_section",
+   "fieldtype": "Section Break",
+   "label": "Qoyod Connection"
+  },
+  {
+   "default": "https://api.qoyod.com/2.0",
+   "fieldname": "api_base",
+   "fieldtype": "Data",
+   "label": "API Base URL"
+  },
+  {
+   "fieldname": "api_key",
+   "fieldtype": "Password",
+   "label": "API Key",
+   "description": "Qoyod API key (sent as the API-KEY header). Stored encrypted."
+  },
+  {
+   "fieldname": "column_break_conn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "description": "Target company. If empty, the first company on the site is used."
+  },
+  {
+   "fieldname": "vat_account",
+   "fieldtype": "Link",
+   "label": "Output VAT Account",
+   "options": "Account",
+   "description": "If empty, an account named 'VAT 15%' is used."
+  },
+  {
+   "fieldname": "defaults_section",
+   "fieldtype": "Section Break",
+   "label": "Default Groups (Arabic)"
+  },
+  {
+   "default": "كل مجموعات الأصناف",
+   "fieldname": "root_item_group",
+   "fieldtype": "Data",
+   "label": "Root Item Group"
+  },
+  {
+   "default": "جميع الأقاليم",
+   "fieldname": "default_territory",
+   "fieldtype": "Data",
+   "label": "Default Territory"
+  },
+  {
+   "default": "-Qoyod",
+   "fieldname": "account_suffix",
+   "fieldtype": "Data",
+   "label": "Account Suffix"
+  },
+  {
+   "fieldname": "column_break_def",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "تجاري",
+   "fieldname": "customer_group_company",
+   "fieldtype": "Data",
+   "label": "Customer Group (Company)"
+  },
+  {
+   "default": "فرد",
+   "fieldname": "customer_group_individual",
+   "fieldtype": "Data",
+   "label": "Customer Group (Individual)"
+  },
+  {
+   "default": "جميع مجموعات الموردين",
+   "fieldname": "default_supplier_group",
+   "fieldtype": "Data",
+   "label": "Default Supplier Group"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-15 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Qoyod Migration",
+ "name": "Qoyod Migration Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+
+# Extracted financial data — real company PII / accounting records, never commit
+qoyod_migration/qoyod_migration/data/

@@ -1,0 +1,138 @@
+{
+ "actions": [],
+ "autoname": "format:QSYNC-{#####}",
+ "creation": "2026-07-15 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "run_datetime",
+  "finished_datetime",
+  "status",
+  "column_break_head",
+  "mode",
+  "extract",
+  "skip_transactions",
+  "triggered_by",
+  "results_section",
+  "results",
+  "reconciliation_section",
+  "reconciliation",
+  "logs_section",
+  "error_log",
+  "log_output"
+ ],
+ "fields": [
+  {
+   "fieldname": "run_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Run Started"
+  },
+  {
+   "fieldname": "finished_datetime",
+   "fieldtype": "Datetime",
+   "label": "Run Finished"
+  },
+  {
+   "default": "Running",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Running\nSuccess\nPartial\nFailed"
+  },
+  {
+   "fieldname": "column_break_head",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Dry Run",
+   "fieldname": "mode",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Mode",
+   "options": "Dry Run\nCommit"
+  },
+  {
+   "default": "0",
+   "fieldname": "extract",
+   "fieldtype": "Check",
+   "label": "Extracted"
+  },
+  {
+   "default": "0",
+   "fieldname": "skip_transactions",
+   "fieldtype": "Check",
+   "label": "Skipped Transactions"
+  },
+  {
+   "fieldname": "triggered_by",
+   "fieldtype": "Link",
+   "label": "Triggered By",
+   "options": "User"
+  },
+  {
+   "fieldname": "results_section",
+   "fieldtype": "Section Break",
+   "label": "Per-Step Results"
+  },
+  {
+   "fieldname": "results",
+   "fieldtype": "Table",
+   "label": "Results",
+   "options": "Qoyod Sync Log Step"
+  },
+  {
+   "fieldname": "reconciliation_section",
+   "fieldtype": "Section Break",
+   "label": "Reconciliation"
+  },
+  {
+   "fieldname": "reconciliation",
+   "fieldtype": "Small Text",
+   "label": "Reconciliation Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "logs_section",
+   "fieldtype": "Section Break",
+   "label": "Logs"
+  },
+  {
+   "fieldname": "error_log",
+   "fieldtype": "Long Text",
+   "label": "Error Log",
+   "read_only": 1
+  },
+  {
+   "fieldname": "log_output",
+   "fieldtype": "Code",
+   "label": "Console Output",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-15 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Qoyod Migration",
+ "name": "Qoyod Sync Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

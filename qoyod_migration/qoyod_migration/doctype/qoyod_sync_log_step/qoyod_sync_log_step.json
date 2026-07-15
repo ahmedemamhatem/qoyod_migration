@@ -1,0 +1,63 @@
+{
+ "actions": [],
+ "creation": "2026-07-15 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "step",
+  "reference_doctype",
+  "created",
+  "skipped",
+  "errors"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "step",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Step"
+  },
+  {
+   "columns": 3,
+   "fieldname": "reference_doctype",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "DocType"
+  },
+  {
+   "columns": 2,
+   "fieldname": "created",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Created"
+  },
+  {
+   "columns": 2,
+   "fieldname": "skipped",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Skipped"
+  },
+  {
+   "columns": 2,
+   "fieldname": "errors",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Errors"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-07-15 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Qoyod Migration",
+ "name": "Qoyod Sync Log Step",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
