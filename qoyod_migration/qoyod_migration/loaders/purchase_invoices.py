@@ -6,7 +6,7 @@ Mirrors the (proven) Sales Invoice loader. Differences:
   * party comes from embedded `contact` dict -> Supplier.custom_qoyod_id
   * line tax field is `tax` (not tax_percent)
   * each line needs an expense_account (company default expense account)
-  * input VAT posts to 2310 - VAT 15%
+  * input VAT posts to the resolved VAT account (config.get_vat_account)
 
 Idempotent (Purchase Invoice.custom_qoyod_id). Submitted. DRY RUN by default.
 """
@@ -35,10 +35,21 @@ def _f(v):
         return 0.0
 
 
+def _line_tax_rate(lines, default_rate):
+    """Bill lines carry the rate under `tax` (not `tax_percent`)."""
+    for li in lines:
+        r = _f(li.get("tax"))
+        if r > 0:
+            return r
+    return default_rate
+
+
 def build(commit=False, limit=None):
     import frappe
 
     company = config.get_company()
+    currency = config.get_currency()
+    default_rate = config.get_vat_rate()
     cost_center = frappe.db.get_value("Company", company, "cost_center")
     expense_account = frappe.db.get_value("Company", company, "default_expense_account")
     vat_account = config.get_vat_account()
@@ -77,6 +88,7 @@ def build(commit=False, limit=None):
             inclusive = bool(lines and lines[0].get("is_inclusive"))
             # Some bill lines are VAT-exempt (tax=0). Only charge VAT if any line has tax.
             any_tax = any(_f(li.get("tax")) > 0 for li in lines)
+            tax_rate = _line_tax_rate(lines, default_rate)
 
             items = []
             for li in lines:
@@ -103,8 +115,8 @@ def build(commit=False, limit=None):
                 taxes.append({
                     "charge_type": "On Net Total",
                     "account_head": vat_account,
-                    "description": "VAT 15%",
-                    "rate": 15.0,
+                    "description": f"VAT {tax_rate:g}%",
+                    "rate": tax_rate,
                     "category": "Total",
                     "add_deduct_tax": "Add",
                     "included_in_print_rate": 1 if inclusive else 0,
@@ -115,6 +127,7 @@ def build(commit=False, limit=None):
                 "doctype": "Purchase Invoice",
                 "company": company,
                 "supplier": supplier,
+                "currency": currency,
                 "posting_date": q.get("issue_date"),
                 "set_posting_time": 1,
                 "bill_no": q.get("reference"),

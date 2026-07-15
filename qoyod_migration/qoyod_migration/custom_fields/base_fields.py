@@ -4,13 +4,11 @@ Qoyod -> ERPNext custom field definitions
 
 Every Qoyod attribute that has no home in a standard ERPNext field gets a
 custom field here, so the sync is LOSSLESS. Run once (idempotent) before the
-loader. Uses Frappe's create_custom_fields, which is the same shape that the
-fixtures exporter round-trips, so these can be exported into grm_management.
+loaders. Uses Frappe's create_custom_fields, so these round-trip cleanly through
+the fixtures exporter if you want to ship them from another app.
 
-Run inside bench:
-    cd sites && ../env/bin/python -c "import sys; sys.path.insert(0,'..'); \
-        import qoyod_custom_fields as m; m.run('uat.grm.sa')"
-or via bench execute (see create_all()).
+These are created automatically on install/migrate (see install.py) and again at
+the start of every commit run (orchestrator.setup_custom_fields).
 """
 
 # fieldname -> definition. `insert_after` keeps the desk form tidy.

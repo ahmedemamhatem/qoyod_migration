@@ -9,9 +9,9 @@ original invoice.
   parent_id  -> return_against (the imported Sales Invoice with that qoyod_id)
   contact_id -> Customer
   line.price -> rate ; qty negated
-  tax 15%    -> 2310 - VAT 15%
+  tax        -> the resolved VAT account (config.get_vat_account)
 
-Idempotent (custom_qoyod_id). Submitted. DRY RUN by default.
+Idempotent (custom_qoyod_id, prefixed 'CN-'). Submitted. DRY RUN by default.
 """
 
 import json
@@ -38,10 +38,20 @@ def _f(v):
         return 0.0
 
 
+def _line_tax_rate(lines, default_rate):
+    for li in lines:
+        r = _f(li.get("tax_percent"))
+        if r > 0:
+            return r
+    return default_rate
+
+
 def build(commit=False, limit=None):
     import frappe
 
     company = config.get_company()
+    currency = config.get_currency()
+    default_rate = config.get_vat_rate()
     cost_center = frappe.db.get_value("Company", company, "cost_center")
     income_account = frappe.db.get_value("Company", company, "default_income_account")
     vat_account = config.get_vat_account()
@@ -81,6 +91,7 @@ def build(commit=False, limit=None):
             lines = q.get("line_items", [])
             inclusive = bool(lines and lines[0].get("is_inclusive"))
             any_tax = any(_f(li.get("tax_percent")) > 0 for li in lines)
+            tax_rate = _line_tax_rate(lines, default_rate)
 
             items = []
             for li in lines:
@@ -107,8 +118,8 @@ def build(commit=False, limit=None):
                 taxes.append({
                     "charge_type": "On Net Total",
                     "account_head": vat_account,
-                    "description": "VAT 15%",
-                    "rate": 15.0,
+                    "description": f"VAT {tax_rate:g}%",
+                    "rate": tax_rate,
                     "included_in_print_rate": 1 if inclusive else 0,
                     "cost_center": cost_center,
                 })
@@ -117,6 +128,7 @@ def build(commit=False, limit=None):
                 "doctype": "Sales Invoice",
                 "company": company,
                 "customer": customer,
+                "currency": currency,
                 "is_return": 1,
                 "return_against": return_against,
                 "posting_date": q.get("issue_date"),

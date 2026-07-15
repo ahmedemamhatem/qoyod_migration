@@ -14,9 +14,9 @@ class QoyodMigrationSettings(Document):
 		return "Connected to Qoyod (HTTP 200)."
 
 	@frappe.whitelist()
-	def run_sync(self, commit=0, extract=0):
+	def run_sync(self, commit=0, extract=0, skip_transactions=0):
 		"""Queue the full sync as a background job."""
 		from qoyod_migration.qoyod_migration.api import enqueue_full_sync
 
-		enqueue_full_sync(commit=commit, extract=extract)
-		return "Sync queued as a background job. Check Qoyod Sync Log / the worker."
+		enqueue_full_sync(commit=commit, extract=extract, skip_transactions=skip_transactions)
+		return "Sync queued as a background job. Watch progress in Qoyod Sync Log."

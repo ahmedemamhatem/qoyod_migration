@@ -30,9 +30,7 @@ PAGE_SIZE = 100
 REQUEST_PAUSE = 0.2          # polite pacing between pages
 SLOW_TIMEOUT = 120           # journal_entries and friends are slow
 FAST_TIMEOUT = 60
-REQUEST_PAUSE = 0.2          # polite pacing between pages
-SLOW_TIMEOUT = 120           # journal_entries and friends are slow
-FAST_TIMEOUT = 60
+MAX_PAGES = 10000            # hard stop against an endpoint that never short-pages
 
 # resource path -> the JSON key its list lives under (None => same as path)
 RESOURCES = {
@@ -109,6 +107,9 @@ def fetch_all(session, resource, listkey, base=None):
             if len(items) < PAGE_SIZE:
                 break
         page += 1
+        if page > MAX_PAGES:
+            print(f"    !! {resource}: hit MAX_PAGES={MAX_PAGES}, stopping to avoid an infinite loop")
+            break
         time.sleep(REQUEST_PAUSE)
     return records, pagination
 

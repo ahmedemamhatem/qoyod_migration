@@ -18,6 +18,9 @@ Sequence:
 """
 
 import base64
+import io
+import traceback
+from contextlib import redirect_stdout
 
 import frappe
 import requests
@@ -152,13 +155,20 @@ def setup_custom_fields():
 	misc_fields.create(commit=True)
 
 
-def run(commit=False, extract=True, skip_transactions=False):
-	"""
-	commit=False -> dry run (connect + extract, validate, write nothing).
-	commit=True  -> insert everything.
-	extract=True -> pull fresh data from Qoyod first; False -> reuse shipped data/*.json.
-	"""
-	frappe.set_user("Administrator")
+def _run_body(commit, extract, skip_transactions, steps):
+	"""The 8-step sequence. Appends {step, dt, created, skipped, errors} dicts to
+	`steps` as loaders return their result dicts, so the Sync Log can record them."""
+
+	def record(step, dt, result):
+		result = result or {}
+		steps.append({
+			"step": step,
+			"reference_doctype": dt,
+			"created": int(result.get("created") or result.get("addr") or 0),
+			"skipped": int(result.get("skipped") or 0),
+			"errors": int(result.get("errors") or 0),
+		})
+
 	mode = "COMMIT (writing)" if commit else "DRY RUN (no writes)"
 	print(f"\n{'#' * 64}\n#  QOYOD -> ERPNext FULL SYNC   [{mode}]\n{'#' * 64}")
 
@@ -170,6 +180,11 @@ def run(commit=False, extract=True, skip_transactions=False):
 		extractor.main()
 	else:
 		print("\n(extract=False -> reusing shipped data/*.json)")
+		if not config.has_dump("customers"):
+			frappe.throw(
+				"extract=False but no data/*.json dumps are present. "
+				"Run with extract=True to pull from Qoyod first."
+			)
 
 	# 3) SETUP custom fields
 	_banner(3, "SETUP custom fields")
@@ -179,7 +194,7 @@ def run(commit=False, extract=True, skip_transactions=False):
 		print("   (dry run) custom-field creation skipped")
 
 	# 4) ACCOUNTS
-	_banner(4, "ACCOUNTS (Qoyod chart -> -Qoyod)")
+	_banner(4, "ACCOUNTS (Qoyod chart -> suffixed)")
 	accounts.build(commit=commit)
 
 	# 5) MASTERS
@@ -188,11 +203,11 @@ def run(commit=False, extract=True, skip_transactions=False):
 
 	# 5b) PROJECTS
 	print("\n--- Projects ---")
-	projects.build(commit=commit)
+	record("Projects", "Project", projects.build(commit=commit))
 
 	# 6) ADDRESSES / CONTACTS
 	_banner(6, "ADDRESSES / CONTACTS")
-	addresses.build(commit=commit)
+	record("Addresses/Contacts", "Address/Contact", addresses.build(commit=commit))
 
 	# prerequisites before posting transactions
 	if commit:
@@ -203,12 +218,12 @@ def run(commit=False, extract=True, skip_transactions=False):
 	# 7) TRANSACTIONS
 	if not skip_transactions:
 		_banner(7, "TRANSACTIONS")
-		print("\n--- Quotations ---"); quotes.build(commit=commit)
-		print("\n--- Sales Invoices ---"); sales_invoices.build(commit=commit)
-		print("\n--- Purchase Invoices ---"); purchase_invoices.build(commit=commit)
-		print("\n--- Credit Notes ---"); credit_notes.build(commit=commit)
-		print("\n--- Journal Entries ---"); journal_entries.build(commit=commit)
-		print("\n--- Payments ---"); payments.build(commit=commit)
+		print("\n--- Quotations ---"); record("Quotations", "Quotation", quotes.build(commit=commit))
+		print("\n--- Sales Invoices ---"); record("Sales Invoices", "Sales Invoice", sales_invoices.build(commit=commit))
+		print("\n--- Purchase Invoices ---"); record("Purchase Invoices", "Purchase Invoice", purchase_invoices.build(commit=commit))
+		print("\n--- Credit Notes ---"); record("Credit Notes", "Sales Invoice (return)", credit_notes.build(commit=commit))
+		print("\n--- Journal Entries ---"); record("Journal Entries", "Journal Entry", journal_entries.build(commit=commit))
+		print("\n--- Payments ---"); record("Payments", "Payment Entry", payments.build(commit=commit))
 		if commit:
 			print("\n--- Link JEs to Projects ---")
 			projects.link_journal_entries(commit=True)
@@ -224,3 +239,76 @@ def run(commit=False, extract=True, skip_transactions=False):
 	print(f"\n{'#' * 64}\n#  DONE  [{mode}]\n{'#' * 64}")
 	if not commit:
 		print("Re-run with commit=True to apply.")
+
+
+def run(commit=False, extract=True, skip_transactions=False, log=True):
+	"""
+	commit=False -> dry run (connect + extract, validate, write nothing).
+	commit=True  -> insert everything.
+	extract=True -> pull fresh data from Qoyod first; False -> reuse shipped data/*.json.
+	log=True     -> record the run in a Qoyod Sync Log (steps, console output, status).
+
+	Always restores the original session user, and never raises out of the log
+	bookkeeping -- a failure in the sequence is captured on the log and re-raised.
+	"""
+	# Restore whatever user was active on entry (default to Administrator if the
+	# session somehow has none), so we never leak an elevated context.
+	prev_user = (frappe.session.user if frappe.session else None) or "Administrator"
+	frappe.set_user("Administrator")
+
+	steps = []
+	buf = io.StringIO()
+	log_doc = None
+	if log:
+		log_doc = frappe.get_doc({
+			"doctype": "Qoyod Sync Log",
+			"run_datetime": frappe.utils.now_datetime(),
+			"status": "Running",
+			"mode": "Commit" if commit else "Dry Run",
+			"extract": 1 if extract else 0,
+			"skip_transactions": 1 if skip_transactions else 0,
+			"triggered_by": prev_user,
+		})
+		try:
+			log_doc.insert(ignore_permissions=True)
+			frappe.db.commit()
+		except Exception:  # noqa: BLE001 -- logging must never break the sync
+			log_doc = None
+
+	error = None
+	try:
+		with redirect_stdout(buf):
+			_run_body(commit, extract, skip_transactions, steps)
+	except Exception:  # noqa: BLE001
+		error = traceback.format_exc()
+		print(error)
+	finally:
+		print(buf.getvalue())  # surface captured output to the real console/worker log
+		if log_doc:
+			_finalize_log(log_doc, steps, buf.getvalue(), error)
+		frappe.set_user(prev_user)
+
+	if error:
+		frappe.throw("Qoyod sync failed; see the Qoyod Sync Log for the full traceback.")
+	return {"ok": True, "log": log_doc.name if log_doc else None, "steps": steps}
+
+
+def _finalize_log(log_doc, steps, output, error):
+	"""Persist step rows, console output, and final status. Never raises."""
+	try:
+		for s in steps:
+			log_doc.append("results", s)
+		total_errors = sum(s["errors"] for s in steps)
+		log_doc.finished_datetime = frappe.utils.now_datetime()
+		log_doc.log_output = output[-100000:]  # keep the tail if huge
+		if error:
+			log_doc.status = "Failed"
+			log_doc.error_log = error
+		elif total_errors:
+			log_doc.status = "Partial"
+		else:
+			log_doc.status = "Success"
+		log_doc.save(ignore_permissions=True)
+		frappe.db.commit()
+	except Exception:  # noqa: BLE001
+		frappe.db.rollback()

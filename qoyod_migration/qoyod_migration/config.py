@@ -3,16 +3,22 @@
 """
 Single source of truth for the Qoyod migration.
 
-Everything configurable (API key/base, target company, VAT account, Arabic
-default groups, the -Qoyod account suffix) resolves through here, in order:
+Everything configurable (API key/base, target company, currency, VAT account and
+rate, default groups/territory, the account-name suffix) resolves through here,
+in order:
 
     Qoyod Migration Settings (Single DocType)  ->  site_config.json  ->  env  ->  default
 
+Where a sensible value can be discovered from the site itself (root Item Group,
+root Territory, a leaf Customer/Supplier group, the company currency, a Tax
+account), the resolver auto-detects it instead of assuming a hard-coded name --
+so the app works on any ERPNext site, English or Arabic, without configuration.
+
 The extracted JSON dumps live in this package's ``data/`` folder, resolved via
-frappe.get_app_path (robust regardless of cwd) -- no symlinks, no per-module
-DATA_DIR rewriting.
+frappe.get_app_path (robust regardless of cwd).
 """
 
+import json
 import os
 
 import frappe
@@ -32,25 +38,24 @@ def data_dir():
 	return path
 
 
-# Convenience constant (evaluated lazily by callers that import it).
-DATA_DIR = None  # set on first access via data_dir(); kept for readability only
-
-
 # --------------------------------------------------------------------------
 # Settings access
 # --------------------------------------------------------------------------
 
 SETTINGS = "Qoyod Migration Settings"
 
-# Defaults (site "uat.grm.sa" / company قرم conventions).
+# Defaults. The Arabic group names below match a KSA ERPNext site created with
+# an Arabic chart of accounts; override them in Qoyod Migration Settings for any
+# other tenant (English installs, different group naming, non-SAR currency, etc.).
 DEFAULT_API_BASE = "https://api.qoyod.com/2.0"
-DEFAULT_ROOT_ITEM_GROUP = "كل مجموعات الأصناف"
-DEFAULT_TERRITORY = "جميع الأقاليم"
-DEFAULT_CG_COMPANY = "تجاري"
-DEFAULT_CG_INDIVIDUAL = "فرد"
-DEFAULT_SUPPLIER_GROUP = "جميع مجموعات الموردين"
+DEFAULT_ROOT_ITEM_GROUP = "All Item Groups"
+DEFAULT_TERRITORY = "All Territories"
+DEFAULT_CG_COMPANY = "Commercial"
+DEFAULT_CG_INDIVIDUAL = "Individual"
+DEFAULT_SUPPLIER_GROUP = "All Supplier Groups"
 DEFAULT_ACCOUNT_SUFFIX = "-Qoyod"
-DEFAULT_VAT_ACCOUNT_NAME = "VAT 15%"
+DEFAULT_VAT_ACCOUNT_NAME = "VAT"
+DEFAULT_VAT_RATE = 15.0
 
 
 def _settings():
@@ -112,48 +117,100 @@ def get_company():
 
 
 def get_vat_account():
-	"""Output-VAT account: Settings.vat_account -> Account named 'VAT 15%' (leaf)."""
+	"""Output/input-VAT account. Resolution:
+	Settings.vat_account -> leaf Account whose name contains the default VAT name
+	-> any leaf Account with account_type 'Tax' on the company. Returns None if
+	the company has no tax account (loaders then post without a VAT row)."""
 	acc = _setting("vat_account")
 	if acc:
 		return acc
 	company = get_company()
 	acc = frappe.db.get_value(
-		"Account", {"company": company, "account_name": DEFAULT_VAT_ACCOUNT_NAME, "is_group": 0}, "name")
+		"Account",
+		{"company": company, "account_name": ["like", f"%{DEFAULT_VAT_ACCOUNT_NAME}%"], "is_group": 0},
+		"name")
 	if not acc:
 		acc = frappe.db.get_value(
 			"Account", {"company": company, "account_type": "Tax", "is_group": 0}, "name")
 	return acc
 
 
+def get_vat_rate():
+	"""Standard VAT/GST percentage applied to taxed lines (KSA default 15%)."""
+	val = _setting("vat_rate")
+	if val in (None, ""):
+		return DEFAULT_VAT_RATE
+	try:
+		return float(val)
+	except (TypeError, ValueError):
+		return DEFAULT_VAT_RATE
+
+
+def get_currency():
+	"""Transaction currency. Settings.currency -> the target company's currency."""
+	cur = _setting("currency")
+	if cur:
+		return cur
+	return frappe.db.get_value("Company", get_company(), "default_currency")
+
+
 def get_root_item_group():
-	return _setting("root_item_group", DEFAULT_ROOT_ITEM_GROUP)
+	"""Root Item Group new categories hang under. Settings -> configured default
+	-> the site's actual is_group root ('All Item Groups' on English installs)."""
+	val = _setting("root_item_group")
+	if val:
+		return val
+	root = frappe.db.get_value(
+		"Item Group", {"is_group": 1, "parent_item_group": ["in", ["", None]]}, "name")
+	return root or DEFAULT_ROOT_ITEM_GROUP
 
 
 def get_territory():
-	return _setting("default_territory", DEFAULT_TERRITORY)
+	val = _setting("default_territory")
+	if val:
+		return val
+	root = frappe.db.get_value(
+		"Territory", {"is_group": 1, "parent_territory": ["in", ["", None]]}, "name")
+	return root or DEFAULT_TERRITORY
 
 
 def get_customer_group_company():
-	return _setting("customer_group_company", DEFAULT_CG_COMPANY)
+	return _setting("customer_group_company") or _default_customer_group()
 
 
 def get_customer_group_individual():
-	return _setting("customer_group_individual", DEFAULT_CG_INDIVIDUAL)
+	return _setting("customer_group_individual") or _default_customer_group()
+
+
+def _default_customer_group():
+	"""A safe existing Customer Group: an explicit non-group leaf, else the root."""
+	grp = frappe.db.get_value("Customer Group", {"is_group": 0}, "name")
+	if grp:
+		return grp
+	return frappe.db.get_value(
+		"Customer Group", {"is_group": 1, "parent_customer_group": ["in", ["", None]]}, "name"
+	) or DEFAULT_CG_COMPANY
 
 
 def get_supplier_group():
-	return _setting("default_supplier_group", DEFAULT_SUPPLIER_GROUP)
+	val = _setting("default_supplier_group")
+	if val:
+		return val
+	grp = frappe.db.get_value("Supplier Group", {"is_group": 0}, "name")
+	if grp:
+		return grp
+	return frappe.db.get_value(
+		"Supplier Group", {"is_group": 1, "parent_supplier_group": ["in", ["", None]]}, "name"
+	) or DEFAULT_SUPPLIER_GROUP
 
 
 def get_account_suffix():
-	return _setting("account_suffix", DEFAULT_ACCOUNT_SUFFIX)
+	return _setting("account_suffix") or DEFAULT_ACCOUNT_SUFFIX
 
 
 # --------------------------------------------------------------------------
 # Small shared helpers used across loaders
 # --------------------------------------------------------------------------
-
-import json  # noqa: E402
 
 
 def load_json(name):

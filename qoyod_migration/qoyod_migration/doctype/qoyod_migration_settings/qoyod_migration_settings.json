@@ -10,7 +10,9 @@
   "api_key",
   "column_break_conn",
   "company",
+  "currency",
   "vat_account",
+  "vat_rate",
   "defaults_section",
   "root_item_group",
   "default_territory",
@@ -50,56 +52,77 @@
    "description": "Target company. If empty, the first company on the site is used."
   },
   {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "description": "Transaction currency. If empty, the target company's currency is used."
+  },
+  {
    "fieldname": "vat_account",
    "fieldtype": "Link",
-   "label": "Output VAT Account",
+   "label": "VAT Account",
    "options": "Account",
-   "description": "If empty, an account named 'VAT 15%' is used."
+   "description": "Output/input VAT account. If empty, a leaf account whose name contains 'VAT' (else any Tax-type account) is used."
+  },
+  {
+   "default": "15",
+   "fieldname": "vat_rate",
+   "fieldtype": "Float",
+   "label": "Default VAT Rate (%)",
+   "description": "Fallback tax rate for taxed lines. Each line's own tax_percent wins when present (KSA default 15)."
   },
   {
    "fieldname": "defaults_section",
    "fieldtype": "Section Break",
-   "label": "Default Groups (Arabic)"
+   "label": "Defaults",
+   "description": "Leave any of these empty to auto-detect a sensible value from this site (root group / leaf group / root territory)."
   },
   {
-   "default": "كل مجموعات الأصناف",
    "fieldname": "root_item_group",
-   "fieldtype": "Data",
-   "label": "Root Item Group"
+   "fieldtype": "Link",
+   "options": "Item Group",
+   "label": "Root Item Group",
+   "description": "Parent for imported categories. Empty = the site's root Item Group."
   },
   {
-   "default": "جميع الأقاليم",
    "fieldname": "default_territory",
-   "fieldtype": "Data",
-   "label": "Default Territory"
+   "fieldtype": "Link",
+   "options": "Territory",
+   "label": "Default Territory",
+   "description": "Empty = the site's root Territory."
   },
   {
    "default": "-Qoyod",
    "fieldname": "account_suffix",
    "fieldtype": "Data",
-   "label": "Account Suffix"
+   "label": "Account Suffix",
+   "description": "Appended to imported account names/numbers to keep them distinct from the native chart."
   },
   {
    "fieldname": "column_break_def",
    "fieldtype": "Column Break"
   },
   {
-   "default": "تجاري",
    "fieldname": "customer_group_company",
-   "fieldtype": "Data",
-   "label": "Customer Group (Company)"
+   "fieldtype": "Link",
+   "options": "Customer Group",
+   "label": "Customer Group (Company)",
+   "description": "For customers with a tax number. Empty = a leaf Customer Group."
   },
   {
-   "default": "فرد",
    "fieldname": "customer_group_individual",
-   "fieldtype": "Data",
-   "label": "Customer Group (Individual)"
+   "fieldtype": "Link",
+   "options": "Customer Group",
+   "label": "Customer Group (Individual)",
+   "description": "For customers without a tax number. Empty = a leaf Customer Group."
   },
   {
-   "default": "جميع مجموعات الموردين",
    "fieldname": "default_supplier_group",
-   "fieldtype": "Data",
-   "label": "Default Supplier Group"
+   "fieldtype": "Link",
+   "options": "Supplier Group",
+   "label": "Default Supplier Group",
+   "description": "Empty = a leaf Supplier Group."
   }
  ],
  "index_web_pages_for_search": 1,

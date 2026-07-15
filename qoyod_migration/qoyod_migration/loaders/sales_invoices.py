@@ -4,16 +4,16 @@ Qoyod invoices -> ERPNext Sales Invoices
 
 Imports Qoyod invoices (qoyod_data/invoices.json) as ERPNext Sales Invoices.
 
-Resolution (all verified to be 100% on this dataset):
+Resolution:
     contact_id        -> Customer.custom_qoyod_id
     line.product_id   -> Item.custom_qoyod_id
-    tax 15%           -> existing "Vat15 - <abbr>" Sales Taxes and Charges Template
+    tax               -> a manual VAT row against config.get_vat_account, at the
+                         line's own tax_percent (config default otherwise)
     posting_date      <- issue_date  (due_date kept)
 
 Pricing: Qoyod line carries is_inclusive. ERPNext handles this by marking the
-tax row "included_in_print_rate". Since the whole dataset uses one 15% rate, we
-apply the Vat15 template and set included_in_print_rate per-invoice when its
-lines are inclusive. (All lines within an invoice share is_inclusive here.)
+tax row "included_in_print_rate", set per-invoice when its lines are inclusive.
+(All lines within an invoice share is_inclusive in practice.)
 
 Idempotent: Sales Invoice.custom_qoyod_id. Submitted (docstatus=1) so GL posts.
 DRY RUN by default.
@@ -21,7 +21,6 @@ DRY RUN by default.
 
 import json
 import os
-import sys
 
 from qoyod_migration.qoyod_migration import config
 from qoyod_migration.qoyod_migration.config import data_dir
@@ -30,7 +29,6 @@ from qoyod_migration.qoyod_migration.config import data_dir
 def _qoyod_values(fskey, record):
     """Fill the Qoyod Data section fields on insert (shared with backfill)."""
     try:
-        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         from qoyod_migration.qoyod_migration.custom_fields import txn_fields as tf
         return tf.qoyod_values(fskey, record)
     except Exception:  # noqa: BLE001
@@ -44,22 +42,30 @@ def _f(v):
         return 0.0
 
 
+def _line_tax_rate(lines, default_rate):
+    """The tax % to apply. Uses the first taxed line's own tax_percent (so a
+    dataset with a rate other than the default still imports correctly), else
+    the configured default rate."""
+    for li in lines:
+        r = _f(li.get("tax_percent"))
+        if r > 0:
+            return r
+    return default_rate
+
+
 def build(commit=False, limit=None):
     import frappe
 
     company = config.get_company()
-    abbr = frappe.db.get_value("Company", company, "abbr")
-    vat_template = f"Vat15 - {abbr}"
-    if not frappe.db.exists("Sales Taxes and Charges Template", vat_template):
-        vat_template = frappe.db.get_value(
-            "Sales Taxes and Charges Template",
-            {"company": company, "is_default": 1}, "name")
+    currency = config.get_currency()
+    default_rate = config.get_vat_rate()
 
     cost_center = frappe.db.get_value("Company", company, "cost_center")
     income_account = frappe.db.get_value("Company", company, "default_income_account")
 
-    # Correct output-VAT account (the site's Vat15 *template* wrongly points at a
-    # shipping-fee account, so we build the tax row manually against this).
+    # Output-VAT account resolved from Settings / a Tax leaf account. The tax row
+    # is built manually against this (not via a Taxes template) so the migration
+    # is not coupled to any particular template's account head.
     vat_account = config.get_vat_account()
     if not vat_account:
         vat_account = frappe.db.get_value(
@@ -81,7 +87,7 @@ def build(commit=False, limit=None):
     print("=" * 60)
     print(f"Qoyod invoices -> Sales Invoice ({company})  "
           f"[{'COMMIT' if commit else 'DRY RUN'}]  n={len(invoices)}")
-    print(f"  VAT template: {vat_template}")
+    print(f"  VAT account: {vat_account or '(none — posting without VAT)'}")
     print("=" * 60)
 
     for q in invoices:
@@ -98,6 +104,8 @@ def build(commit=False, limit=None):
 
             lines = q.get("line_items", [])
             inclusive = bool(lines and lines[0].get("is_inclusive"))
+            any_tax = any(_f(li.get("tax_percent")) > 0 for li in lines)
+            tax_rate = _line_tax_rate(lines, default_rate)
 
             items = []
             for li in lines:
@@ -121,14 +129,15 @@ def build(commit=False, limit=None):
                     row["cost_center"] = cost_center
                 items.append(row)
 
-            # Manual 15% VAT row against the correct output-VAT account.
+            # Manual VAT row against the resolved output-VAT account (only when a
+            # line actually carries tax; rate taken from the data, not hardcoded).
             taxes = []
-            if vat_account:
+            if vat_account and any_tax:
                 taxes.append({
                     "charge_type": "On Net Total",
                     "account_head": vat_account,
-                    "description": "VAT 15%",
-                    "rate": 15.0,
+                    "description": f"VAT {tax_rate:g}%",
+                    "rate": tax_rate,
                     "included_in_print_rate": 1 if inclusive else 0,
                     "cost_center": cost_center,
                 })
@@ -137,6 +146,7 @@ def build(commit=False, limit=None):
                 "doctype": "Sales Invoice",
                 "company": company,
                 "customer": customer,
+                "currency": currency,
                 "posting_date": q.get("issue_date"),
                 "set_posting_time": 1,
                 "due_date": q.get("due_date") or q.get("issue_date"),

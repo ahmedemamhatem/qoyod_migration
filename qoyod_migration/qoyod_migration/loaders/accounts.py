@@ -1,20 +1,21 @@
 """
-Import ALL Qoyod accounts into the ERPNext chart of accounts, suffixed -Qoyod.
-=============================================================================
+Import ALL Qoyod accounts into the ERPNext chart of accounts, suffixed.
+======================================================================
 
-Per user decision:
-  * Import all 151 Qoyod accounts (no match/skip -- every account is created).
-  * account_name  -> "<name_ar>-Qoyod"
-  * account_number -> "<code>-Qoyod"
+  * Import every Qoyod account (no match/skip -- every account is created).
+  * account_name   -> "<name>{suffix}"      (suffix from config, default -Qoyod)
+  * account_number -> "<code>{suffix}"
   * Tagged with custom_qoyod_id and custom_qoyod_code (raw code) for the
     transaction-phase lookup.
 
 Tree built (mirrors Qoyod's own categorisation):
     <root group of RootType>
       └─ "Qoyod Imported - <RootType>"          (group)
-           └─ "<group_type>-Qoyod"              (group, per Qoyod group_type)
-                └─ "<name_ar>-Qoyod"            (ledger leaf)
+           └─ "<group_type>{suffix}"           (group, per Qoyod group_type)
+                └─ "<name>{suffix}"            (ledger leaf)
 
+The suffix keeps the imported chart distinct from the site's native accounts, so
+this is safe to run against a company that already has its own chart of accounts.
 Idempotent: re-running skips accounts already tagged with the same
 custom_qoyod_code. DRY RUN by default.
 """
@@ -24,8 +25,8 @@ import os
 
 from qoyod_migration.qoyod_migration import config
 from qoyod_migration.qoyod_migration.config import data_dir
+
 MAP_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "qoyod_account_map.json")
-SUFFIX = "-Qoyod"
 
 
 def _qoyod_values(record):
@@ -70,7 +71,7 @@ def build(commit=False):
     import frappe
 
     company = config.get_company()
-    abbr = frappe.db.get_value("Company", company, "abbr")
+    suffix = config.get_account_suffix()
 
     # find an existing root-type group to hang each holding group under
     root_parent = {}
@@ -130,7 +131,7 @@ def build(commit=False):
             print(f"  ! no parent for root={root!r} (group_type={gt}) -> {len(accts)} skipped")
             continue
         holding = ensure_group(f"Qoyod Imported - {root}", root_parent[root], root)
-        subgroup = ensure_group(f"{gt}{SUFFIX}", holding, root)
+        subgroup = ensure_group(f"{gt}{suffix}", holding, root)
 
         for q in accts:
             code = str(q["code"])
@@ -143,8 +144,8 @@ def build(commit=False):
                         "qoyod_name": q.get("name_ar"), "erpnext_account": existing,
                         "match": "exists"}
                     continue
-                acct_name = f"{q.get('name_ar') or q.get('name_en')}{SUFFIX}"
-                acct_number = f"{code}{SUFFIX}"
+                acct_name = f"{q.get('name_ar') or q.get('name_en')}{suffix}"
+                acct_number = f"{code}{suffix}"
                 if not commit:
                     created_leaves += 1
                     mapping[code] = {"qoyod_id": q["id"], "qoyod_code": code,

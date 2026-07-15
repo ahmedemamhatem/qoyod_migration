@@ -1,27 +1,20 @@
 """
-Qoyod masters loader -> uat.grm.sa (ERPNext, via ORM)
-=====================================================
+Qoyod masters loader -> ERPNext (via ORM)
+=========================================
 
-Loads MASTER DATA ONLY from the local qoyod_data/*.json dumps into ERPNext,
-using the Frappe ORM directly (no REST). Idempotent: every record carries
-custom_qoyod_id and we find-or-create on it, so re-runs update instead of
-duplicating.
+Loads MASTER DATA ONLY from the local data/*.json dumps into ERPNext, using the
+Frappe ORM directly (no REST). Idempotent: every record carries custom_qoyod_id
+and we find-or-create on it, so re-runs update instead of duplicating.
 
 Order (dependencies first):
     UOM  ->  Item Group  ->  Customer  ->  Supplier  ->  Item
 
-Arabic-primary site defaults (discovered on uat.grm.sa):
-    Item Group root : كل مجموعات الأصناف
-    Territory       : جميع الأقاليم
-    Customer Group  : تجاري (has tax) / فرد (no tax)
-    Supplier Group  : جميع مجموعات الموردين
+Group/territory names come from config (Settings -> auto-detected site root ->
+default), so this works on English or Arabic ERPNext installs without edits.
+Customer type is Company when the record has a tax number, else Individual.
 
-DRY RUN by default. It prints a plan and writes nothing. Pass --commit to
+DRY RUN by default. It prints a plan and writes nothing. Pass commit=True to
 actually insert/update.
-
-Run inside bench (from sites/):
-    ../env/bin/python -c "import sys; sys.path.insert(0,'..'); \
-        import qoyod_load_masters as m; m.main(commit=False)"
 """
 
 import json
@@ -265,7 +258,7 @@ def main(commit=False):
     log = lambda s: (logs.append(s), print(s))[1]
 
     mode = "COMMIT (writing to DB)" if commit else "DRY RUN (no writes)"
-    log(f"\n{'='*60}\nQoyod masters -> uat.grm.sa   [{mode}]\n{'='*60}")
+    log(f"\n{'='*60}\nQoyod masters -> {config.get_company()}   [{mode}]\n{'='*60}")
 
     load_uoms(commit, log)
     _, cat_map = load_item_groups(commit, log)

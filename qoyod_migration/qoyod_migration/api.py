@@ -33,26 +33,27 @@ def test_connection():
 
 @frappe.whitelist()
 def run_full_sync(commit=False, extract=True, skip_transactions=False):
-	"""Run the full Qoyod -> ERPNext sync. See orchestrator.run for semantics."""
+	"""Run the full Qoyod -> ERPNext sync. See orchestrator.run for semantics.
+	Returns the orchestrator result (log name + per-step counts)."""
 	frappe.only_for("System Manager")
-	orchestrator.run(
+	return orchestrator.run(
 		commit=_bool(commit),
 		extract=_bool(extract),
 		skip_transactions=_bool(skip_transactions),
 	)
-	return {"ok": True}
 
 
 @frappe.whitelist()
 def enqueue_full_sync(commit=False, extract=True, skip_transactions=False):
-	"""Queue the full sync as a background job (for the Settings UI button)."""
+	"""Queue the full sync as a background job (for the Settings UI button).
+	Coerces flags to real bools up front so the queued job gets clean values."""
 	frappe.only_for("System Manager")
 	frappe.enqueue(
 		"qoyod_migration.qoyod_migration.api.run_full_sync",
 		queue="long",
 		timeout=7200,
-		commit=commit,
-		extract=extract,
-		skip_transactions=skip_transactions,
+		commit=_bool(commit),
+		extract=_bool(extract),
+		skip_transactions=_bool(skip_transactions),
 	)
 	return {"queued": True}
