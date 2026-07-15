@@ -293,6 +293,17 @@ hooks.py               # required_apps=[erpnext], after_install/after_migrate
 
 ---
 
+## Author & Contact
+
+**Ahmed Emam**
+
+- Email: [ahmedemamhatem@gmail.com](mailto:ahmedemamhatem@gmail.com)
+- GitHub: [@ahmedemamhatem](https://github.com/ahmedemamhatem)
+
+Questions, bug reports, and pull requests are welcome.
+
+---
+
 ## License
 
 MIT — see [`license.txt`](license.txt).
